@@ -3,15 +3,13 @@ import tensorflow as tf
 from flask import Flask, request, jsonify
 import os
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-
-
+# Inicializar Flask
 app = Flask(__name__)
 
-# Cargar el modelo entrenado
-model = tf.keras.models.load_model('C:/Users/YOYI/Documents/banken-flask/modelo_landmarks.keras')
+# Cargar el modelo entrenado (usa una ruta relativa)
+model = tf.keras.models.load_model('modelo_landmarks.keras')
 
+# Función para detectar la letra a partir de los landmarks
 def detect_letter(landmarks):
     # Convertir landmarks a un array de NumPy y asegurarse de que tenga la forma correcta
     input_data = np.array(landmarks).reshape(1, -1)
@@ -28,6 +26,7 @@ def detect_letter(landmarks):
 
     return predicted_letter
 
+# Ruta para realizar predicciones
 @app.route('/detect', methods=['POST'])
 def detect():
     try:
@@ -43,5 +42,12 @@ def detect():
         print(f"Error: {e}")
         return jsonify({'error': f'Error procesando los landmarks: {str(e)}'}), 500
 
+# Ruta para verificar si el servidor está funcionando
+@app.route('/')
+def home():
+    return jsonify({'message': 'API de Lenguaje de Señas está activa'})
+
+# Correr la aplicación
 if __name__ == '__main__':
-    app.run(host='localhost', port=5001)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
