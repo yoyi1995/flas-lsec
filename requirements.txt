@@ -44,7 +44,7 @@ mdurl==0.1.2
 mediapipe==0.10.14
 ml-dtypes==0.4.1
 namex==0.0.8
-numpy==1.26.4
+numpy==1.21.6
 opencv-contrib-python==4.10.0.84
 opencv-python==4.10.0.84
 opt_einsum==3.4.0
@@ -76,7 +76,6 @@ stack-data==0.6.3
 tensorboard==2.17.1
 tensorboard-data-server==0.7.2
 tensorflow==2.17.0
-tensorflow-intel==2.17.0
 termcolor==2.4.0
 threadpoolctl==3.5.0
 traitlets==5.14.3
